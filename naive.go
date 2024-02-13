@@ -18,12 +18,14 @@ type point struct {
 func main() {
 	if len(os.Args) != 2 {
 		fmt.Fprintln(os.Stderr, "Usage:   go run naive.go $OUTUT")
-		fmt.Fprintln(os.Stderr, "Example: go run naive.go data/tiny.csv")
+		fmt.Fprintln(os.Stderr, "Example: go run naive.go data/2m.csv")
 		os.Exit(1)
 	}
 
 	inf, err := os.Open(os.Args[1])
-	check(err)
+	if err != nil {
+		log.Fatalf("can't read %v: %v", os.Args[1], err)
+	}
 
 	points := map[string]*point{}
 
@@ -63,11 +65,5 @@ func main() {
 	sort.Strings(locs)
 	for _, l := range locs {
 		fmt.Printf("%-30s %.2f %.2f %.2f\n", l, points[l].min, points[l].total/float64(points[l].n), points[l].max)
-	}
-}
-
-func check(err error) {
-	if err != nil {
-		log.Fatal(err)
 	}
 }
