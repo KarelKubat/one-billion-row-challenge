@@ -25,9 +25,9 @@ In short:
 
 - Process these lines, so that per location, you determine the minimum temperature, the maximum, and the average.
 
-- Output your results **in alphabetically sorted order**, e.g., given the above example `Abidjan` first and `Wau` last. Per result display the name of the location, the minimum temperature, the average, and the maximum. Temperatures must be (computed and) displayed a precision of 2 digits; e.g., `22.39`.
+- Output your results **in alphabetically sorted order**, e.g., given the above example `Abidjan` first and `Wau` last. Per result display the name of the location, the minimum temperature, the average, and the maximum. Temperatures must be displayed with a precision of 2 digits; e.g., `22.39`.
 
-- **Make that program as fast as possible**. At the time of writing this, I managed to reduce the time of a simplistic naive algorithm by half. More must be possible - I'm still playing around with it.
+- **Make that program as fast as possible**. At the time of writing this, I managed to come up with an alrorithm that reduces the runtime when comparing to a simple naive algorithm. But I'm still playing around with it, I don't have "the right approach".
 
 ## Input data
 
@@ -52,6 +52,8 @@ wc -l data/1b.csv
 
 ## Is the output correct?
 
-I have provided four reference files that you can `diff` against: `data/100.csv.out`, `data/2m.csv.out`, `data/10m.csv.out` etc.. The files were produced by `naive.go` which uses the `printf`-like formatting `"%-30s %.2f %.2f %.2f\n"` for each location's name, minimum temperature, average, and maximum. If your solution generates output in the same format, then diffing `data/$SIZE-csv.out` against your ouput should produce no differences.
+I have provided reference files that you can `diff` against: `data/100.csv.out` (the output for the processing of `data/100.csv`), `data/2m.csv.out` (output for processing `data/2m.csv`), `data/10m.csv.out` etc.. 
+
+The files were produced by `naive.go` which uses the `printf`-like formatting `"%-30s %.2f %.2f %.2f\n"` for each location's name, minimum temperature, average, and maximum. If your solution generates output in the same format, then diffing `data/$SIZE-csv.out` against your ouput should produce no differences.
 
 Unless of course `naive.go` doesn't properly work. In that case let me know.
