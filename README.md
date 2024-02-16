@@ -6,7 +6,7 @@ Read https://github.com/gunnarmorling/1brc for the full original description. Th
 
 In short:
 
-- Write a program that reads a really large CSV file (a billion rows). Each row is in the format: `Location;temperature`. The location is a string, the temperature a floating point number. 
+- Write a program that reads a really large CSV file (a billion rows). Each row is in the format: `Location;temperature`. The location is a string, the temperature a floating point number with at most one decimal digit after the dot.
 
   Example of a file with 8 rows:
 
