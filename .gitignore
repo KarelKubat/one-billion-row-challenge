@@ -6,3 +6,4 @@ data/50m.csv
 KarelKubat/
 go.mod
 go.sum
+*.out

@@ -37,9 +37,17 @@ My "naive" approach works as follows.
 
 - The input is read from file, line by line.
 - Each line is split into two parts: a location and a temperature datapoint.
-- The result is stored in a map, keyed by location. The map value is a structure that tracks the minimum temperature, the maximum, the total and the number of datapoints for this location.
-- While updating the map's value, the minimum and maximum may need adjusting. The total and number of occurrences are updated.
-- Before reporting, the map's keys (i.e., locations) are collected in an array and alpha-sorted. Then the report is generated in the order of the sorted locations. The average temperature is computed as total divided by number of occurrences.
+- The result is stored in an unsorted map (that's Go's default), keyed by location. The map value is a structure that tracks the minimum temperature, the maximum, the total and the number of datapoints for this location.
+- While updating the map's value, the minimum and maximum may need adjusting. The total and number of occurrences are updated:
+  ```
+  // pseudo-code when a temperature is recorded for a location
+  results[location].minimum = min(results[location].mininum, temperature)
+  results[location].maximum = max(results[location].maximum, temperature)
+  results[location].total += temperature
+  results[location].n++
+  ```
+- Before reporting, the map's keys (i.e., locations) are collected in an array and alpha-sorted. 
+- Finally the report is generated in the order of the sorted locations. The average temperature is computed as total divided by number of occurrences: `average := map[location].total / map[location].n`.
 
 ## Input data
 
