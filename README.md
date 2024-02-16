@@ -21,13 +21,25 @@ In short:
   Frankfurt;-0.6
   ```
 
-  Locations can be repeated in the file; e.g., you can encounter more than one datapoint for `Mandalay`.
+  Locations can be repeated in the file; e.g., you can encounter more than one datapoint for `Mandalay`. 
+  
+- You may assume that all lines are well-formed: all lines have two parts, separated by `;` and the second part is a number. There are no empty lines, except for the trailing `\n`. (Though in my experience, checking for parsing errors doesn't add any significant overhead.)
 
 - Process these lines, so that per location, you determine the minimum temperature, the maximum, and the average.
 
 - Output your results **in alphabetically sorted order**, e.g., given the above example `Abidjan` first and `Wau` last. Per result display the name of the location, the minimum temperature, the average, and the maximum. Temperatures must be displayed with a precision of 2 digits; e.g., `22.39`.
 
 - **Make that program as fast as possible**. At the time of writing this, I managed to come up with an alrorithm that reduces the runtime when comparing to a simple naive algorithm. But I'm still playing around with it, I don't have "the right approach".
+
+## Naive approach (for reference)
+
+My "naive" approach works as follows.
+
+- The input is read from file, line by line.
+- Each line is split into two parts: a location and a temperature datapoint.
+- The result is stored in a map, keyed by location. The map value is a structure that tracks the minimum temperature, the maximum, the total and the number of datapoints for this location.
+- While updating the map's value, the minimum and maximum may need adjusting. The total and number of occurrences are updated.
+- Before reporting, the map's keys (i.e., locations) are collected in an array and alpha-sorted. Then the report is generated in the order of the sorted locations. The average temperature is computed as total divided by number of occurrences.
 
 ## Input data
 
